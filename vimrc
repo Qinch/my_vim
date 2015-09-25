@@ -108,25 +108,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 "-----------------------------------------------------------------
-" plugin - taglist.vim 查看函数列表，需要ctags程序
-" F4 打开隐藏taglist窗口
-"-----------------------------------------------------------------
-" 设定windows系统中ctags程序的位置
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-nnoremap <silent><F4> :TlistToggle<CR>
-let Tlist_Show_One_File = 1 " 不同时显示多个文件的tag，只显示当前文件的
-let Tlist_Exit_OnlyWindow = 1 " 如果taglist窗口是最后一个窗口，则退出vim
-let Tlist_Use_Right_Window = 1 " 在右侧窗口中显示taglist窗口
-let Tlist_File_Fold_Auto_Close=1 " 自动折叠当前非编辑文件的方法列表
-let Tlist_Auto_Open = 0
-let Tlist_Auto_Update = 1
-let Tlist_Hightlight_Tag_On_BufEnter = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Process_File_Always = 1
-let Tlist_Display_Prototype = 0
-let Tlist_Compact_Format = 1
-
-"-----------------------------------------------------------------
 " plugin - NERD_tree.vim 以树状方式浏览系统中的文件和目录
 " :ERDtree 打开NERD_tree :NERDtreeClose 关闭NERD_tree
 " o 打开关闭文件或者目录 t 在标签页中打开
@@ -139,7 +120,11 @@ let Tlist_Compact_Format = 1
 " F3 NERDTree 切换
 map <F3> :NERDTreeToggle<CR>
 imap <F3> <ESC>:NERDTreeToggle<CR>
-"-----------------------------------------------------------------
+let NERDTreeWinSize=30 "窗口宽度
+let NERDTreeIgnore=['.o$[[file]]']
+let NERDTreeAutoDeleteBuffer=1 "自动更新
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+
 
 "-----------------------------------------------------------------
 " plugin - NERD_commenter.vim 注释代码用的，
@@ -153,30 +138,96 @@ let mapleader=","
 let NERDSpaceDelims=1 " 让注释符与语句之间留一个空格
 let NERDCompactSexyComs=1 " 多行注释时样子更好看
 
-let g:auto_save = 1  " enable AutoSave on Vim startup"
-
-
+"------------------------------------------------------------------
+"plugin - auto-save
 "-----------------------------------------------------------------
-" plugin - matchit.vim 对%命令进行扩展使得能在嵌套标签和语句之间跳转
-" % 正向匹配 g% 反向匹配
-" [% 定位块首 ]% 定位块尾
+"let g:auto_save = 1  " enable AutoSave on Vim startup"
+
+"------------------------------------------------------------------
+"plugin - Gundo
 "-----------------------------------------------------------------
+"nnoremap <silent><F2> :GundoToggle <CR>
+nnoremap <c-u> :GundoToggle<CR>
+
+
+"------------------------------------------------------------------
+"plugin - TaskList
 "-----------------------------------------------------------------
+map <c-t> <Plug>TaskList
 
-"{{{ ================= vim-clang-format ==================
-"nnoremap <c-a><c-k><c-f> :ClangFormat<cr>
+"------------------------------------------------------------------
+"plugin - Tagbar
+"-----------------------------------------------------------------
+nmap <silent><F4> :TagbarToggle<CR>
+let g:tagbar_left=0 " 使其出现在右边
+set updatetime=100 " 根据光标位置自动更新高亮tag的间隔时间，单位为毫秒
+let g:tagbar_width=30 " 设置窗口宽度
+let g:tagbar_compact=1 " 不显示顶部帮助信息，节省空间
+let g:tagbar_show_linenumbers = 1 " 显示绝对行号
+let g:tagbar_expand = 1 " 自动扩展gui窗口
+autocmd VimEnter * nested :TagbarOpen  " 启动vim时自动打开tagbar
+autocmd VimEnter * nested :call tagbar#autoopen(1)  "若文件类型支持，则自动打开tagbar
+autocmd BufEnter * nested :call tagbar#autoopen(0) "打开新标签时，自动打开tagbar
 
-"" format on buffer saving
-"let g:clang_format#auto_format = 0
-"let g:clang_format#auto_format_on_insert_leave = 0
+"------------------------------------------------------------------
+"plugin - CtrlP
+"-----------------------------------------------------------------
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+map <leader>f :CtrlPMRU<CR>
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
 
-" format command
-"let g:clang_format#command = 'clang-format-3.6'
+"
+set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+nmap <leader>sl :SessionList<CR>
+nmap <leader>ss :SessionSave<CR>
+nmap <leader>sc :SessionClose<CR>
 
-"{{{ ===================== vim-tags ===================
-"let g:vim_tags_auto_generate = 1
-"let g:vim_tags_project_tags_command = "{CTAGS} -R {OPTIONS} {DIRECTORY}"
+"------------------------------------------------------------------
+"plugin - YCM
+"-----------------------------------------------------------------
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py' 
+"每次重新生成匹配项，禁止缓存匹配项  
+let g:ycm_cache_omnifunc = 0
+" 语法关键字补全 
+let g:ycm_seed_identifiers_with_syntax = 1  
+"在注释中也可以补全  
+let g:ycm_complete_in_comments = 1  
+"在字符串输入中也能补全
+let g:ycm_complete_in_strings = 1
+""注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+"输入第一个字符就开始补全  
+let g:ycm_min_num_of_chars_for_completion = 1
+"离开插入模式后自动关闭预览窗口
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif	
+" 0: 关闭ycm的syntastic
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_error_symbol = '>>'
+let g:ycm_warning_symbol = '>*'
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nmap <F2> :YcmDiags<CR>
 
+"------------------------------------------------------------------
+"plugin - ClangFormat
+"-----------------------------------------------------------------
+nnoremap <c-f> :ClangFormat<cr>
+"format on buffer saving
+let g:clang_format#auto_format = 0
+let g:clang_format#auto_format_on_insert_leave = 0
+"format command
+ let g:clang_format#command = 'clang-format-3.6'
 
 set nocompatible 
 filetype off
@@ -189,15 +240,19 @@ Bundle 'gmarik/vundle'
 
 " My Bundles here:
 Bundle 'a.vim'
+Bundle 'Tagbar'
 Bundle 'Syntastic'
 Bundle 'Auto-Pairs'
-Bundle 'taglist.vim'
-Bundle 'vim-auto-save'
+"Bundle 'vim-auto-save'
 Bundle 'payneseu/nerdtree'
 Bundle 'The-NERD-Commenter'
-"Bundle 'rhysd/vim-clang-format'
-"Bundle 'vim-tags'
 "Bundle 'bbchung/clighter'
 Bundle 'TaskList.vim'
+Bundle 'Gundo'
+Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'sessionman.vim'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'rhysd/vim-clang-format'
 
 filetype plugin indent on     " required!
