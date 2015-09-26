@@ -123,6 +123,7 @@ imap <F3> <ESC>:NERDTreeToggle<CR>
 let NERDTreeWinSize=30 "窗口宽度
 let NERDTreeIgnore=['.o$[[file]]']
 let NERDTreeAutoDeleteBuffer=1 "自动更新
+"若最后一个窗口是NerdTree窗口时，自动关闭它
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 
 
@@ -159,6 +160,8 @@ map <c-t> <Plug>TaskList
 "plugin - Tagbar
 "-----------------------------------------------------------------
 nmap <silent><F4> :TagbarToggle<CR>
+"1:则是按字母序,0:"按出现顺序排序
+let g:tagbar_sort = 0
 let g:tagbar_left=0 " 使其出现在右边
 set updatetime=100 " 根据光标位置自动更新高亮tag的间隔时间，单位为毫秒
 let g:tagbar_width=30 " 设置窗口宽度
@@ -179,14 +182,17 @@ let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
     \ }
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_match_window_bottom=1
+let g:ctrlp_working_path_mode=0 "disable work path mode
+let g:ctrlp_match_window_bottom=1 
 let g:ctrlp_max_height=15
-let g:ctrlp_match_window_reversed=0
-let g:ctrlp_mruf_max=500
-let g:ctrlp_follow_symlinks=1
+let g:ctrlp_match_window_reversed=0 
+let g:ctrlp_mruf_max=500 
+let g:ctrlp_follow_symlinks=1 "显示链接文件
 
-"
+
+"------------------------------------------------------------------
+"plugin - Sessionman 
+"-----------------------------------------------------------------
 set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 nmap <leader>sl :SessionList<CR>
 nmap <leader>ss :SessionSave<CR>
@@ -229,6 +235,19 @@ let g:clang_format#auto_format_on_insert_leave = 0
 "format command
  let g:clang_format#command = 'clang-format-3.6'
 
+"{{{ ================= clighter =======================
+let g:clighter_libclang_file = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/libclang.so.3.7'
+let g:clighter_autostart = 1
+"let g:clighter_window_size = -1 " whole buffer
+let g:clighter_window_size = 0 " highlight current screen of window
+"let g:clighter_window_size = 1
+let g:clighter_realtime = 0
+let g:clighter_rename_prompt_level = 1
+let g:clighter_syntax_groups = ['clighterNamespaceRef', 'clighterFunctionDecl', 'clighterFieldDecl', 'clighterDeclRefExprCall', 'clighterMemberRefExprCall', 'clighterMemberRefExprVar', 'clighterNamespace', 'clighterNamespaceRef', 'cligherInclusionDirective', 'clighterVarDecl']
+let g:ClighterOccurrences = 0
+
+
+
 set nocompatible 
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -246,7 +265,7 @@ Bundle 'Auto-Pairs'
 "Bundle 'vim-auto-save'
 Bundle 'payneseu/nerdtree'
 Bundle 'The-NERD-Commenter'
-"Bundle 'bbchung/clighter'
+Bundle 'bbchung/clighter'
 Bundle 'TaskList.vim'
 Bundle 'Gundo'
 Bundle 'ctrlpvim/ctrlp.vim'
