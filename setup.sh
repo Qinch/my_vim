@@ -1,20 +1,23 @@
+#å‚è€ƒ:
+#https://github.com/ma6174/vim
+#http://blog.csdn.net/xzz_hust/article/details/23178981
+#
+
 #!/bin/bash
-echo "°²×°½«»¨·ÑÒ»¶¨Ê±¼ä£¬ÇëÄÍĞÄµÈ´ıÖ±µ½°²×°Íê³É^_^"
+echo "å®‰è£…å°†èŠ±è´¹ä¸€å®šæ—¶é—´ï¼Œè¯·è€å¿ƒç­‰å¾…ç›´åˆ°å®‰è£…å®Œæˆ^_^"
 
 sudo apt-get install -y cmake python-dev clang-format-3.6 
-
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
-echo "ÕıÔÚÅ¬Á¦ÎªÄú°²×°bundle³ÌĞò" > tmp
-echo "°²×°Íê±Ï½«×Ô¶¯ÍË³ö" >> tmp
-echo "ÇëÄÍĞÄµÈ´ı" >> tmp
+echo "æ­£åœ¨åŠªåŠ›ä¸ºæ‚¨å®‰è£…bundleç¨‹åº" > tmp
+echo "å®‰è£…å®Œæ¯•å°†è‡ªåŠ¨é€€å‡º" >> tmp
+echo "è¯·è€å¿ƒç­‰å¾…" >> tmp
+
 cp vimrc ~/.vimrc
 vim tmp -c "BundleInstall" -c "q" -c "q"
 rm tmp
-
 clang-format-3.6 -style=google -dump-config > ~/.clang-format 
-
 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
 cp ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py ~/
 
-echo "°²×°Íê³É"
+echo "å®‰è£…å®Œæˆ"
