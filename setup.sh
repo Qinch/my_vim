@@ -15,6 +15,6 @@ rm tmp
 clang-format-3.6 -style=google -dump-config > ~/.clang-format 
 
 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
-cp  .vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py ~/
+cp ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py ~/
 
 echo "安装完成"
