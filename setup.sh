@@ -1,7 +1,7 @@
 #参考:
 #https://github.com/ma6174/vim
+#http://ju.outofmemory.cn/entry/79671
 #http://blog.csdn.net/xzz_hust/article/details/23178981
-#
 
 #!/bin/bash
 echo "安装将花费一定时间，请耐心等待直到安装完成^_^"
