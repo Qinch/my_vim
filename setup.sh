@@ -6,7 +6,7 @@
 #!/bin/bash
 echo "安装将花费一定时间，请耐心等待直到安装完成^_^"
 
-sudo apt-get install -y cmake python-dev clang-format-3.6 ctags 
+sudo apt-get install -y  vim cmake python-dev clang-format-3.6 ctags 
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 echo "正在努力为您安装bundle程序" > qin
