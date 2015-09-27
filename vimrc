@@ -274,4 +274,21 @@ Bundle 'sessionman.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'rhysd/vim-clang-format'
 "Bundle 'SirVer/ultisnips'
+
+"主题 solarized
+Bundle 'altercation/vim-colors-solarized'
+"let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_contrast='normal'
+let g:solarized_visibility='normal'
+"主题 molokai
+Bundle 'tomasr/molokai'
+let g:molokai_original = 1
+"配色方案
+set background=dark
+set t_Co=256
+"colorscheme solarized
+colorscheme molokai
+"colorscheme phd
+
 filetype plugin indent on     " required!
