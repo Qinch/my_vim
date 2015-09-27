@@ -235,7 +235,9 @@ let g:clang_format#auto_format_on_insert_leave = 0
 "format command
  let g:clang_format#command = 'clang-format-3.6'
 
-"{{{ ================= clighter =======================
+"------------------------------------------------------------------
+"plugin - clighter 
+"-----------------------------------------------------------------
 let g:clighter_libclang_file = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/libclang.so.3.7'
 let g:clighter_autostart = 1
 "let g:clighter_window_size = -1 " whole buffer
@@ -245,8 +247,6 @@ let g:clighter_realtime = 0
 let g:clighter_rename_prompt_level = 1
 let g:clighter_syntax_groups = ['clighterNamespaceRef', 'clighterFunctionDecl', 'clighterFieldDecl', 'clighterDeclRefExprCall', 'clighterMemberRefExprCall', 'clighterMemberRefExprVar', 'clighterNamespace', 'clighterNamespaceRef', 'cligherInclusionDirective', 'clighterVarDecl']
 let g:ClighterOccurrences = 0
-
-
 
 set nocompatible 
 filetype off
@@ -265,7 +265,7 @@ Bundle 'Auto-Pairs'
 "Bundle 'vim-auto-save'
 Bundle 'payneseu/nerdtree'
 Bundle 'The-NERD-Commenter'
-Bundle 'bbchung/clighter'
+"Bundle 'bbchung/clighter'
 Bundle 'TaskList.vim'
 Bundle 'Gundo'
 Bundle 'ctrlpvim/ctrlp.vim'
@@ -273,5 +273,5 @@ Bundle 'tpope/vim-surround'
 Bundle 'sessionman.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'rhysd/vim-clang-format'
-
+"Bundle 'SirVer/ultisnips'
 filetype plugin indent on     " required!
