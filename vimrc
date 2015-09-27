@@ -287,7 +287,8 @@ Bundle 'rhysd/vim-clang-format'
 "Bundle 'SirVer/ultisnips'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'hdima/python-syntax'
-
+Bundle 'bronson/vim-trailing-whitespace'
+map <leader><space> :FixWhitespace<cr> "+space去掉末尾空格
 
 "主题 solarized
 Bundle 'altercation/vim-colors-solarized'
