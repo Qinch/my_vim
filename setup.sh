@@ -15,9 +15,11 @@ echo "请耐心等待" >> tmp
 
 cp vimrc ~/.vimrc
 vim tmp  -c "BundleInstall" -c "q" -c "q"
-rm qin
+rm tmp
 clang-format-3.6 -style=google -dump-config > ~/.clang-format 
 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
+cd ~/.vim/bundle/YouCompleteMe/
+git submodule update --init --recursive
 cp ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py ~/
 
 echo "安装完成"
