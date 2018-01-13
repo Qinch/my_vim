@@ -264,6 +264,12 @@ let g:Powerline_symbols = 'unicode'
 "-----------------------------------------------------------------
 let python_highlight_all = 1
 
+"------------------------------------------------------------------                                                                                   
+" vim-tags                                                                                                                                           
+" -----------------------------------------------------------------                                                                                     
+let g:vim_tags_auto_generate = 1                                                                                                                      
+"let g:vim_tags_project_tags_command = "{CTAGS} -R {OPTIONS} {DIRECTORY}"
+
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
@@ -288,6 +294,7 @@ Bundle 'rhysd/vim-clang-format'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'hdima/python-syntax'
 Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'szw/vim-tags'
 map <leader><space> :FixWhitespace<cr> 
 "+space去掉末尾空格
 
